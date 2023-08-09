@@ -5,10 +5,19 @@
     text-align: center;
     --main-color: #be8813;
     --white: white;
+    overflow: hidden;
   }
   * {
     margin: 0;
     padding: 0;
+  }
+  .searchedWrong {
+    color: grey;
+    padding: 3px;
+  }
+  .SORRY {
+    margin-top: 25px;
+    padding: 10px;
   }
   /* BEGIN HEADER CSS */
   .App-header {
@@ -19,6 +28,7 @@
     color: var(--white);
     padding: 25px 0px;
   }
+
   .App-header h1 {
     margin-top: -15px;
     padding: 10px;
@@ -37,6 +47,61 @@
     bottom: 36px;
     left: 180px;
   }
+  .searchIcon:hover {
+    cursor: pointer;
+  }
+  /* BEGIN MAIN CSS */
+  .recipeImage {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: .5px solid grey;
+  }
+  .recipeIndiv {
+    display: flex;
+    margin: 15px 5px;
+    padding: 15px;
+    align-items: center;
+    border: .5px solid grey;
+  }
+  .recipeMain {
+    margin-top: 80px;
+  }
+  .recipeIndiv-information {
+    padding-left: 10px;
+    text-align: left;
+  }
+  .recipeName {
+    font-weight: 700;
+    margin-top: -10px;
+    font-size: large;
+    padding-bottom: 50px;
+  }
+  .recipeAnchor {
+    text-decoration: none;
+    color: var(--main-color)
+  }
+  .readMoreRecipe {
+    margin-top: 40px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color .2s ease-in 100ms;
+  }
+  .readMoreRecipe:hover {
+    background-color: var(--main-color);
+  }
+  .readMoreRecipe:hover a{
+    color: white;
+  }
+  .recipeServings, .readyInRecipe {
+    padding: 3px;
+  }
+  .resultsHeader {
+    position: absolute;
+    top: 200px;
+    left: 10px;
+  }
 }
 
 
@@ -53,12 +118,27 @@
 
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: 750px) {
   /* BEGIN HEADER CSS */
   .searchIcon {
     left: 270px;
   }
 
+}
+@media only screen and (min-width: 800px) {
+  /* BEGIN HEADER CSS */
+  .searchIcon {
+    left: 290px;
+  }
+
+  /* BEGIN MAIN CSS */
+  .recipeMain {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .recipeIndiv {
+    width: 45%;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -70,10 +150,39 @@
 
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1300px) {
   /* BEGIN HEADER CSS */
   .searchIcon {
     left: 550px;
   }
 
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1600px) {
+  /* BEGIN HEADER CSS */
+  .searchIcon {
+    left: 730px;
+  }
+  .recipeIndiv {
+    width: 30%;
+  }
+  .cantFind {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .loadMoreBtn {
+    margin-bottom: 10px;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    transition: background-color .2s ease-in 100ms;
+    color: var(--main-color)
+  }
+  .loadMoreBtn:hover {
+    background-color: var(--main-color);
+    color: white;
+  }
 }
