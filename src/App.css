@@ -11,6 +11,9 @@
     margin: 0;
     padding: 0;
   }
+  .invisible {
+    display: none;
+  }
   .searchedWrong {
     color: grey;
     padding: 3px;
@@ -48,6 +51,20 @@
     left: 180px;
   }
   .searchIcon:hover {
+    cursor: pointer;
+  }
+  .convertButton {
+    width: 25%;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    color: var(--main-color);
+    background-color: white;
+  }
+  .convertButton:hover{
+    color: white;
+    background-color: var(--main-color);
+    border: .5px solid white;
     cursor: pointer;
   }
   /* BEGIN MAIN CSS */
@@ -101,6 +118,78 @@
     position: absolute;
     top: 200px;
     left: 10px;
+  }
+
+
+
+
+  /* CSS FOR CONVERT BOX */
+  .convertBoxContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .convertBox {
+    background-color: var(--main-color);
+    position: absolute;
+    top: 0;
+    width: 500px;
+    margin-top: 50px;
+    height: 500px;
+    padding: 25px;
+    color: white;
+    border: 2px solid white;
+    box-shadow: 10px 5px 10px #8a620d;
+  }
+  .bars {
+    font-size: x-large;
+    margin-right: -450px;
+  }
+  .bars:hover {
+    cursor: pointer;
+  }
+  .h3Padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .convertBox input {
+    margin: 15px 0;
+    height: 30px;
+  }
+  .convertBox label {
+    margin-right: 5px;
+  }
+  .label {
+    margin: 15px;
+  }
+  .convertText, .measureMent {
+    border: none;
+    height: 30px;
+    padding-left: 5px;
+  }
+  .measureMentt {
+    padding-top: 20px;
+  }
+  .convertBtnContainer {
+    padding-top: 50px;
+  }
+  .convertBtn {
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    width: 50%;
+    color: var(--main-color);
+    background-color: var(--white);
+    margin-bottom: 50px;
+  }
+  .convertBtn:hover {
+    cursor: pointer;
+    color: white;
+    background-color: var(--main-color);
+    border: 1px solid white;
+  }
+  .answerConversion {
+    font-size: larger;
+    padding: 10px;
   }
 }
 

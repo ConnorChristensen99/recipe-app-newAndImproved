@@ -1,5 +1,5 @@
 import './App.css';
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaBars } from "react-icons/fa";
 import React, { useState, useEffect } from 'react';
 
 
@@ -115,7 +115,6 @@ function App() {
   
   // FUNCTION TO DISPLAY RECIPES ON APP LOAD
   async function displayRecipes() {
-    console.log('displaying Recipes!')
     let recipeMain = document.getElementById('recipeMain')
     recipeMain.innerHTML = ""
     let btn = document.getElementById('me')
@@ -162,6 +161,49 @@ function App() {
         
       });
   }
+  // HANDLES THE CONVERT BUTTON POPUP
+  function showConvert() {
+    let convertBox = document.getElementById('convertBox')
+    if (convertBox.classList.contains('invisible')) {
+      convertBox.classList.remove('invisible')
+    } else {
+      convertBox.classList.add('invisible')
+    }
+  }
+  function hideConvert() {
+    let convertBox = document.getElementById('convertBox')
+
+    if (convertBox.classList.contains('invisible')) {
+      convertBox.classList.remove('invisible')
+    } else {
+      convertBox.classList.add('invisible')
+    }
+  }
+  // HANDLES THE ACTUAL CONVERSION OF THE BUTTONS
+    async function makeConversion() {
+        let ingredient = document.getElementById('convertText').value
+        let amount = document.getElementById('convertNumber').value
+        let measure1 = document.getElementById('measurementBefore').value
+        let measure2 = document.getElementById('measurementAfter').value
+        
+        const response = await fetch(`https://api.spoonacular.com/recipes/convert?ingredientName=${ingredient}&sourceAmount=${amount}&sourceUnit=${measure1}&targetUnit=${measure2}&apiKey=592c176aa0f74669aacd253abca7bcbc`);
+        const conversion = await response.json();
+
+        console.log(conversion)
+        let answerDOM = document.getElementById('convertBox')
+        let answer = conversion.answer
+
+       let newSpan = document.createElement('span')
+       newSpan.innerText = answer
+       newSpan.classList.add('answerConversion')
+
+        console.log(newSpan)
+       answerDOM.append(newSpan)
+    }
+        
+
+
+
   useEffect(() => {
     displayRecipes();
   }, []);
@@ -174,11 +216,49 @@ function App() {
         <h1>WheatRecipes</h1>
         <input type='text' placeholder='Find a Recipe...' id='search' className='recipeFinderSearch' onKeyDown={handleKeyDown}/>
         <FaSearch className='searchIcon' onClick={getRecipes}/>
+        <button className='convertButton' onClick={showConvert}>Convert</button>
       </header>
       <main>
         <div className='recipeMain' id='recipeMain'></div>
         <button href="#me" onClick={moveLimit} id='me' className='loadMoreBtn'>Load More Recipes</button>
       </main>
+
+
+      {/* CONVERT DIALOGUE BOX */}
+      <div className='convertBoxContainer'>
+      <div className='convertBox invisible' id='convertBox'>
+        <FaBars className='bars' onClick={hideConvert}/>
+        <h2 className='h3Padding'>Convert Ingredients</h2>
+        <label>Enter Ingredient:</label>
+        <input type='text' id='convertText' className='convertText' placeholder='Flour'/><br/>
+        <label>Enter Amount:</label>
+        <input type='text' id='convertNumber' className='convertText' placeholder='3.5'/><br/>
+        <div className='measureMentt'>
+        <select name="measurementBefore" id="measurementBefore" className='measureMent'>
+          <option option value="Tablespoon">Tablespoon(s)</option>
+          <option value="Ounce">Ounce(s)</option>
+          <option value="Cup">Cup(s)</option>
+          <option value="Pint">Pint(s)</option>
+          <option value="Quart">Quart(s)</option>
+          <option value="Gallon">Gallon(s)</option>
+        </select>
+        <span class='label'>To:</span>
+        <select name="measurementAfter" id="measurementAfter" className='measureMent'>
+        <option option value="Tablespoon">Tablespoon(s)</option>
+          <option value="Ounce">Ounce(s)</option>
+          <option value="Cup">Cup(s)</option>
+          <option value="Pint">Pint(s)</option>
+          <option value="Quart">Quart(s)</option>
+          <option value="Gallon">Gallon(s)</option>
+        </select>
+        </div>
+        <div className='convertBtnContainer'>
+        <button className='convertBtn' onClick={makeConversion}>Convert</button>
+        </div>
+      </div>
+      </div>
+      {/* END CONVERT DIALOGUE BOX */}
+
     </div>
   );
 }
